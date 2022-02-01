@@ -14,25 +14,18 @@ public class ClickManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameTiles = 
-        GameObject.FindGameObjectsWithTag("GameTile").
-        Select(go => go.GetComponent<Transform>()).ToArray();
+        gameTiles = GameObject.FindGameObjectsWithTag("GameTile").Select(go => go.GetComponent<Transform>()).ToArray();
         gameTiles.ToList().ForEach(gt => Debug.Log($"Game Tile {gt.name}"));
 
-        colorTiles =
-            GameObject.FindGameObjectsWithTag("ColorTile").
-        Select(go => go.GetComponent<Transform>()).ToArray();
+        colorTiles = GameObject.FindGameObjectsWithTag("ColorTile").Select(go => go.GetComponent<Transform>()).ToArray();
         gameTiles.ToList().ForEach(gt => Debug.Log($"Game Tile {gt.name}"));
 
-        colorTilesMaterials = 
-            colorTiles.ToList().
-            Select(t => t.GetComponent<MeshRenderer>().material).ToArray();
+        colorTilesMaterials = colorTiles.ToList().Select(t => t.GetComponent<MeshRenderer>().material).ToArray();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         if (Input.GetMouseButtonDown(0))
         {
             Vector3 mp = Input.mousePosition;
@@ -54,7 +47,9 @@ public class ClickManager : MonoBehaviour
                 }
             }
             else
+            {
                 Debug.Log($"Clicked at {mp} without hitting anything");
+            }
         }
     }
 }
