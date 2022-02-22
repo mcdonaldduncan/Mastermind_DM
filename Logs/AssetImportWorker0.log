@@ -399,3 +399,4 @@ Received Import Request.
   path: Assets/Scripts/AnswerDetection.cs
   artifactKey: Guid(3de817143f5988b43819cced14ae3c5a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Scripts/AnswerDetection.cs using Guid(3de817143f5988b43819cced14ae3c5a) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '0c239aa359a959cdd4b9e10339f1a536') in 0.012965 seconds 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file

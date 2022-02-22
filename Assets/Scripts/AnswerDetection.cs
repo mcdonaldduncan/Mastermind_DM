@@ -8,6 +8,10 @@ public class AnswerDetection : MonoBehaviour
 {
     [SerializeField] GameObject[] currentRow;
     [SerializeField] GameObject[] answerKey;
+    [SerializeField] GameObject[] pins;
+    [SerializeField] GameObject hintGrid;
+
+    GameObject[] pinSlots;
 
     void Start()
     {
@@ -45,6 +49,15 @@ public class AnswerDetection : MonoBehaviour
         int[] answerValues = new int[currentMats.Length];
         List<Material> compMats = answerMats.ToList();
         List<Color> colorAnswers = new List<Color>();
+
+        int numPinSlots = hintGrid.transform.childCount;
+        pinSlots = new GameObject[numPinSlots];
+
+        for (int i = 0; i < numPinSlots; i++)
+        {
+            pinSlots[i].transform.position = hintGrid.transform.GetChild(i).transform.position;
+        }
+
         foreach (var item in compMats)
         {
             colorAnswers.Add(item.color);
@@ -55,10 +68,12 @@ public class AnswerDetection : MonoBehaviour
             if (currentMats[i].color == answerMats[i].color)
             {
                 answerValues[i] = 1;
+                InstantiateCorrectPin(pinSlots[i].transform);
             }
             else if (colorAnswers.Contains(currentMats[i].color))
             {
                 answerValues[i] = 0;
+                InstantiateWrongPin(pinSlots[i].transform);
             }
             else
             {
@@ -66,5 +81,18 @@ public class AnswerDetection : MonoBehaviour
             }
             Debug.Log(answerValues[i]);
         }
+    }
+
+
+    void InstantiateCorrectPin(Transform transform)
+    {
+        GameObject pin = Instantiate(pins[0]);
+        pin.transform.position = transform.position;
+    }
+
+    void InstantiateWrongPin(Transform transform)
+    {
+        GameObject pin = Instantiate(pins[1]);
+        pin.transform.position = transform.position;
     }
 }
