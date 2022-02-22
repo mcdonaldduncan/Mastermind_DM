@@ -139,3 +139,4 @@ Received Import Request.
   path: Assets/Scenes/Mastermind.unity
   artifactKey: Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)
 Start importing Assets/Scenes/Mastermind.unity using Guid(9fc0d4010bbf28b4594072e72b8655ab) Importer(815301076,1909f56bfc062723c751e8b465ee728b)  -> (artifact id: '30a9fb18073d7e7382d1fee12e9620d3') in 0.020515 seconds 
+AssetImportWorkerClient::OnTransportError - code=2 error=End of file
