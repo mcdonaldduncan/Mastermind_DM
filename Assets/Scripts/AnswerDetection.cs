@@ -55,6 +55,7 @@ public class AnswerDetection : MonoBehaviour
 
         for (int i = 0; i < numPinSlots; i++)
         {
+            pinSlots[i] = new GameObject();
             pinSlots[i].transform.position = hintGrid.transform.GetChild(i).transform.position;
         }
 
