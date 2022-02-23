@@ -50,15 +50,6 @@ public class AnswerDetection : MonoBehaviour
         List<Material> compMats = answerMats.ToList();
         List<Color> colorAnswers = new List<Color>();
 
-        int numPinSlots = hintGrid.transform.childCount;
-        pinSlots = new GameObject[numPinSlots];
-
-        for (int i = 0; i < numPinSlots; i++)
-        {
-            pinSlots[i] = new GameObject();
-            pinSlots[i].transform.position = hintGrid.transform.GetChild(i).transform.position;
-        }
-
         foreach (var item in compMats)
         {
             colorAnswers.Add(item.color);
@@ -69,12 +60,12 @@ public class AnswerDetection : MonoBehaviour
             if (currentMats[i].color == answerMats[i].color)
             {
                 answerValues[i] = 1;
-                InstantiateCorrectPin(pinSlots[i].transform);
+                InstantiateCorrectPin(hintGrid.transform.GetChild(i).transform);
             }
             else if (colorAnswers.Contains(currentMats[i].color))
             {
                 answerValues[i] = 0;
-                InstantiateWrongPin(pinSlots[i].transform);
+                InstantiateWrongPin(hintGrid.transform.GetChild(i).transform);
             }
             else
             {
