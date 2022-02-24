@@ -75,7 +75,6 @@ public class AnswerDetection : MonoBehaviour
         }
     }
 
-
     void InstantiateCorrectPin(Transform transform)
     {
         GameObject pin = Instantiate(pins[0]);
@@ -86,5 +85,10 @@ public class AnswerDetection : MonoBehaviour
     {
         GameObject pin = Instantiate(pins[1]);
         pin.transform.position = transform.position;
+    }
+
+    void AdvanceIndex()
+    {
+
     }
 }
