@@ -60,12 +60,12 @@ public class AnswerDetection : MonoBehaviour
             if (currentMats[i].color == answerMats[i].color)
             {
                 answerValues[i] = 1;
-                InstantiateCorrectPin(hintGrid.transform.GetChild(i).transform);
+                InstantiatePin(0, hintGrid.transform.GetChild(i).transform);
             }
             else if (colorAnswers.Contains(currentMats[i].color))
             {
                 answerValues[i] = 0;
-                InstantiateWrongPin(hintGrid.transform.GetChild(i).transform);
+                InstantiatePin(1, hintGrid.transform.GetChild(i).transform);
             }
             else
             {
@@ -75,17 +75,12 @@ public class AnswerDetection : MonoBehaviour
         }
     }
 
-    void InstantiateCorrectPin(Transform transform)
+    void InstantiatePin(int index, Transform transform)
     {
-        GameObject pin = Instantiate(pins[0]);
+        GameObject pin = Instantiate(pins[index]);
         pin.transform.position = transform.position;
     }
 
-    void InstantiateWrongPin(Transform transform)
-    {
-        GameObject pin = Instantiate(pins[1]);
-        pin.transform.position = transform.position;
-    }
 
     void AdvanceIndex()
     {
