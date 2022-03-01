@@ -1823,7 +1823,9 @@ MonoBehaviour:
   pins:
   - {fileID: 7180655740838714952, guid: e9ba0a62e373c3640a466830a7f3cbfe, type: 3}
   - {fileID: 2921659734410118841, guid: f2e3421daab4f1d4096d94373de0dce8, type: 3}
+  - {fileID: 2921659734410118841, guid: 65a3bb021648f0a49a90338c457c8ec1, type: 3}
   hintGrid: {fileID: 1413686525}
+  randomize: 0
 --- !u!4 &670780302
 Transform:
   m_ObjectHideFlags: 0
@@ -4066,8 +4068,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1413686525}
   m_LocalRotation: {x: -0, y: -0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -17.525776, y: -20.60911, z: 11.416395}
-  m_LocalScale: {x: 0.37756, y: 1, z: 0.83723}
+  m_LocalPosition: {x: -17.52578, y: -20.609114, z: 11.416395}
+  m_LocalScale: {x: 0.37756014, y: 1, z: 0.83723}
   m_Children:
   - {fileID: 1525233775}
   - {fileID: 1964043235}

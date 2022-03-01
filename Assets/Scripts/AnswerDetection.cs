@@ -1,8 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using static Utility;
+
 
 public class AnswerDetection : MonoBehaviour
 {
@@ -10,8 +11,11 @@ public class AnswerDetection : MonoBehaviour
     [SerializeField] GameObject[] answerKey;
     [SerializeField] GameObject[] pins;
     [SerializeField] GameObject hintGrid;
+    [SerializeField] bool randomize;
 
-    GameObject[] pinSlots;
+    List<GameObject> sortedPins = new List<GameObject>();
+    
+    List<GameObject> randomizedPins = new List<GameObject>();
 
     void Start()
     {
@@ -46,6 +50,10 @@ public class AnswerDetection : MonoBehaviour
 
     void Report(Material[] answerMats, Material[] currentMats)
     {
+        // Clear lists so that new objects can be instantiated, remove when using multiple lists
+        randomizedPins.Clear();
+        sortedPins.Clear();
+
         int[] answerValues = new int[currentMats.Length];
         List<Material> compMats = answerMats.ToList();
         List<Color> colorAnswers = new List<Color>();
@@ -70,8 +78,14 @@ public class AnswerDetection : MonoBehaviour
             else
             {
                 answerValues[i] = -1;
+                InstantiatePin(2, hintGrid.transform.GetChild(i).transform);
             }
             Debug.Log(answerValues[i]);
+        }
+
+        if (randomize)
+        {
+            RandomizePins();
         }
     }
 
@@ -79,8 +93,18 @@ public class AnswerDetection : MonoBehaviour
     {
         GameObject pin = Instantiate(pins[index]);
         pin.transform.position = transform.position;
+        sortedPins.Add(pin);
     }
 
+    void RandomizePins()
+    {
+        randomizedPins = sortedPins.OrderBy(x => random.Next()).ToList();
+
+        for (int i = 0; i < randomizedPins.Count; i++)
+        {
+            randomizedPins[i].transform.position = hintGrid.transform.GetChild(i).transform.position;
+        }
+    }
 
     void AdvanceIndex()
     {

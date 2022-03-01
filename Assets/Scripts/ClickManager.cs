@@ -26,30 +26,31 @@ public class ClickManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (!Input.GetMouseButtonDown(0))
         {
-            Vector3 mp = Input.mousePosition;
-            Ray ray = Camera.main.ScreenPointToRay(mp);
+            return;
+        }
+        Vector3 mp = Input.mousePosition;
+        Ray ray = Camera.main.ScreenPointToRay(mp);
 
-            if (Physics.Raycast(ray, out RaycastHit hit))
+        if (Physics.Raycast(ray, out RaycastHit hit))
+        {
+            if (gameTiles.Contains(hit.transform))
             {
-                if (gameTiles.Contains(hit.transform))
-                {
-                    Debug.Log($"Clicked on Game Tile {hit.transform.name} at {hit.transform.position}");
-                    if (currentMaterial != null)
-                        hit.transform.GetComponent<MeshRenderer>().material = currentMaterial;
-                }
-                else if (colorTiles.Contains(hit.transform))
-                {
-                    Debug.Log($"Clicked on Color Tile {hit.transform.name} at {hit.transform.position}");
-                    int pos = Array.IndexOf(colorTiles, hit.transform);
-                    currentMaterial = colorTilesMaterials[pos];    
-                }
+                Debug.Log($"Clicked on Game Tile {hit.transform.name} at {hit.transform.position}");
+                if (currentMaterial != null)
+                    hit.transform.GetComponent<MeshRenderer>().material = currentMaterial;
             }
-            else
+            else if (colorTiles.Contains(hit.transform))
             {
-                Debug.Log($"Clicked at {mp} without hitting anything");
+                Debug.Log($"Clicked on Color Tile {hit.transform.name} at {hit.transform.position}");
+                int pos = Array.IndexOf(colorTiles, hit.transform);
+                currentMaterial = colorTilesMaterials[pos];
             }
+        }
+        else
+        {
+            Debug.Log($"Clicked at {mp} without hitting anything");
         }
     }
 }
