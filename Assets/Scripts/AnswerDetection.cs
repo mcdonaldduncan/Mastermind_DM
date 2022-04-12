@@ -13,13 +13,19 @@ public class AnswerDetection : MonoBehaviour
     [SerializeField] GameObject hintGrid;
     [SerializeField] bool randomize;
 
+    GameHandler gameManager;
+
     List<GameObject> sortedPins = new List<GameObject>();
     
     List<GameObject> randomizedPins = new List<GameObject>();
 
     void Start()
     {
-        
+        gameManager = GetComponent<GameHandler>();
+        if (gameManager != null)
+        {
+
+        }
     }
 
     void Update()
@@ -104,6 +110,11 @@ public class AnswerDetection : MonoBehaviour
         {
             randomizedPins[i].transform.position = hintGrid.transform.GetChild(i).transform.position;
         }
+    }
+
+    void MoveToNextRow()
+    {
+
     }
 
     void AdvanceIndex()
